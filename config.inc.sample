@@ -1,6 +1,6 @@
 <?php
-  $targets['Organization/repo']['master'] = 'cd /var/www/production-folder && sudo git reset --hard HEAD && sudo git pull';
-  $targets['Organization/repo']['develop'] = 'cd /var/www/test/folder && sudo git reset --hard HEAD && sudo git pull';
-  
-  define('ALERT_EMAIL', 'info@domain.hu');
+  $targets['Organization/repository']['master'] = 'cd /var/www/prodfolder && sudo git reset --hard HEAD && sudo git pull';
+  $targets['Organization/repository']['development'] = 'cd /var/www/testfolder && sudo git reset --hard HEAD && sudo git pull';
+
+  define('ALERT_EMAIL', 'balazs.csaba@symboltech.hu');
 ?>
