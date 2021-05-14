@@ -29,9 +29,9 @@
   if ($exec = $targets[$repo][$branch])
   {
     $result->exec = $exec;
-    exec($exec, $result);
-    if ($result)
-      $result->execresult = $result;
+    exec($exec, $execresult);
+    if ($execresult)
+      $result->execresult = $execresult;
   }
 
   $time_elapsed_secs = round(1000 * (microtime(true) - $start));
