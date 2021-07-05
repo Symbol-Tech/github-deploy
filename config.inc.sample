@@ -1,6 +1,6 @@
 <?php
-  $targets['Organization/repository']['master'] = 'cd /var/www/prodfolder && sudo git reset --hard HEAD && sudo git pull';
-  $targets['Organization/repository']['development'] = 'cd /var/www/testfolder && sudo git reset --hard HEAD && sudo git pull';
+  $targets['Organization/repository']['master'] = 'cd /var/www/prodfolder ; sudo git reset --hard HEAD ; sudo git pull';
+  $targets['Organization/repository']['development'] = 'cd /var/www/testfolder ; sudo git reset --hard HEAD ; sudo git pull';
 
   define('ALERT_EMAIL', 'devops@company.tld');
 ?>
