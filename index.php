@@ -1,8 +1,9 @@
 <?php
-  include('config.inc');
+include('config.inc');
 
-  header('Content-Type: application/json');
+header('Content-Type: application/json');
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $now = DateTime::createFromFormat('U.u', microtime(true));
   $time = $now->format("Y-m-d H.i.s.u");
 
@@ -18,16 +19,15 @@
   $repo = $decoded->repository->full_name;
   $branch = str_replace('refs/heads/', '', $decoded->ref);
   $commitmsgs = [];
-  foreach($decoded->commits as $commit)
+  foreach ($decoded->commits as $commit)
     $commitmsgs[] = $commit->message;
   sort($commitmsgs);
-  
+
   $result->repo = $repo;
   $result->branch = $branch;
   $result->commits = $commitmsgs;
 
-  if ($exec = $targets[$repo][$branch])
-  {
+  if ($exec = $targets[$repo][$branch]) {
     $result->exec = $exec;
     exec($exec, $execresult);
     if ($execresult)
@@ -37,9 +37,11 @@
   $time_elapsed_secs = round(1000 * (microtime(true) - $start));
   $result->status = "OK";
   $result->elapsed = $time_elapsed_secs;
-                                                        
+
   echo json_encode($result);
-  
+
   if (defined('ALERT_EMAIL'))
     mail(ALERT_EMAIL, "Deploy - $repo/$branch", json_encode($result, JSON_PRETTY_PRINT));
-?>
+} else {
+  echo "404 - Page not found";
+}
