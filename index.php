@@ -48,5 +48,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     file_put_contents($logfile, print_r("Empty request", true));
   }
 } else {
-  echo "404 - Page not found";
+  echo "404 - Page not found!";
 }
